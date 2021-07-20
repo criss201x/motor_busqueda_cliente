@@ -17,4 +17,9 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.database().ref("/");
-firebase.analytics();
+
+firebase.analytics.isSupported().then((isSupported) => {
+    if (isSupported) {
+        const analytics = firebase.analytics();
+    }
+})
