@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/database';
+import 'firebase/analytics';
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
