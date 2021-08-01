@@ -1,0 +1,36 @@
+[
+  {
+    "Sede": "VIVERO",
+    "Proyectos_curriculares": [{
+            "Proyecto_curricular": "ARTE DANZARIO",
+            "espacios": [{
+                    "Cod": 23418,
+                    "Espacio_Academico": "ANALISIS FUNCIONAL DEL MOVIMIENTO",
+                    "grupos": [{
+                            "Docente": "ROJAS GUTIERREZ DIANA CAROLINA",
+                            "Grp": "102-1",
+                            "INSCRITOS": 11,
+                            "lugar": [{
+                                    "Dia": "LUNES",
+                                    "Edificio": "PALACIO LA MERCED",
+                                    "Salon": "SALON MUSICA 234",
+                                    "horas": [{
+                                            "Hora": "6-7"
+                                            },{
+                                            "Hora": "7-8"
+                                    }]
+                            },{
+                                    "Dia": "VIERNES",
+                                    "Edificio": "PALACIO LA MERCED",
+                                    "Salon": "SALON B 210",
+                                            "horas": [{
+                                                    "Hora": "8-9"
+                                            },{
+                                                    "Hora": "9-10"
+                                            }]
+                            }]
+                    }]
+            }]
+    }]
+  }
+]
