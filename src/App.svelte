@@ -7,7 +7,7 @@
     ColumnFilterInputs,
     rows,
   } from "svelte-simple-datatables";
-
+  import { onMount } from 'svelte';  
   const settings = {
     columnFilter: true,
     pagination: true,
@@ -59,6 +59,47 @@
     });
     data = tabla;
   });
+
+
+  let events = [
+    { day: 'Monday', time: '10:00 AM', eventName: 'Meeting 1' },
+    { day: 'Wednesday', time: '02:30 PM', eventName: 'Meeting 2' },
+    { day: 'Friday', time: '11:00 AM', eventName: 'Meeting 3' },
+    // Add more events as needed
+  ];
+
+  let calendarData = [];
+
+  onMount(() => {
+    populateCalendar();
+  });
+
+  function populateCalendar() {
+    // Define the time slots (adjust as needed)
+    const timeSlots = [
+      '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM',
+      '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM',
+      '01:00 PM', '01:30 PM', '02:00 PM', '02:30 PM',
+      '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM',
+      '05:00 PM', '05:30 PM', '06:00 PM', '06:30 PM',
+    ];
+
+    // Loop through each time slot
+    timeSlots.forEach(timeSlot => {
+      const row = { time: timeSlot, cells: [] };
+
+      // Loop through each day of the week
+      ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].forEach(day => {
+        const event = events.find(e => e.day === day && e.time === timeSlot);
+        const cell = { day, event: event ? event.eventName : null };
+
+        row.cells.push(cell);
+      });
+
+      calendarData.push(row);
+    });
+  }
+
 </script>
 
 <Header />
@@ -102,6 +143,31 @@
       {/each}
     </tbody>
   </Datatable>
+  <br><br>
+
+  <h2>Weekly Calendar Scheduler</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Time</th>
+      {#each ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as day}
+        <th>{day}</th>
+      {/each}
+    </tr>
+  </thead>
+  <tbody>
+    {#each calendarData as { time, cells }}
+      <tr>
+        <td>{time}</td>
+        {#each cells as { day, event }}
+          <td>{#if event}{event}{/if}</td>
+        {/each}
+      </tr>
+    {/each}
+  </tbody>
+</table>
+
 </main>
 <Footer />
 
