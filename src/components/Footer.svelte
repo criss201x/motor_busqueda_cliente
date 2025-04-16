@@ -2,7 +2,7 @@
 
 </script>
 <footer>
-    <div class="copyright">Contacto: clalapea@correo.udistrital.edu.co </div>
+    <div class="copyright">Contacto: clalapea@udistrital.edu.co </div>
 </footer>
 
 <style>

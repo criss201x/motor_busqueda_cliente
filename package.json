@@ -9,6 +9,7 @@
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^17.0.0",
+        "@rollup/plugin-json": "^6.1.0",
         "@rollup/plugin-node-resolve": "^11.0.0",
         "rollup": "^2.3.4",
         "rollup-plugin-css-only": "^3.1.0",
@@ -19,7 +20,12 @@
         "svelte-simple-datatables": "^0.1.25"
     },
     "dependencies": {
+        "@fullcalendar/core": "^6.1.17",
+        "@fullcalendar/daygrid": "^6.1.17",
+        "@fullcalendar/interaction": "^6.1.17",
+        "@fullcalendar/timegrid": "^6.1.17",
         "firebase": "^8.7.1",
-        "sirv-cli": "^1.0.0"
+        "sirv-cli": "^1.0.0",
+        "svelte-fullcalendar": "^3.0.0"
     }
 }
