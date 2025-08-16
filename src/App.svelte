@@ -69,34 +69,44 @@
     }
   }
 
-  function handleGrpSubmit(event) {
+function handleGrpSubmit(event) {
     event.preventDefault();
     errorMessage = ""; // Limpiar mensaje de error
     if (selectedGrp) {
       const grpFilteredData = filteredData.filter((item) => item.Grp === selectedGrp);
 
-      // Generar un color aleatorio para esta selección
-      const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
-        Math.random() * 256
-      )}, ${Math.floor(Math.random() * 256)}, 0.5)`; // 0.5 es la opacidad (50%)
-
-      // Validar y agregar los datos a la tabla de horarios
+      // Primero verificar si hay conflictos
+      let hasConflict = false;
       grpFilteredData.forEach((item) => {
-        const horaInicio = parseInt(item.Hora.split("-")[0]); // Extraer la hora inicial
-        const dia = item.Dia.toLowerCase(); // Convertir el día a minúsculas
-        const fila = horaInicio - 6; // Calcular la fila correspondiente (6:00 es la fila 0)
+        const horaInicio = parseInt(item.Hora.split("-")[0]);
+        const dia = item.Dia.toLowerCase();
+        const fila = horaInicio - 6;
 
         if (fila >= 0 && fila < horarios.length && horarios[fila][dia] !== undefined) {
-          if (!horarios[fila][dia]) {
-            // Si la celda está vacía, asignar el nombre del Grp y el color
-            horarios[fila][dia] = item.Espacio_Academico;
-            cellColors[`${fila}-${dia}`] = randomColor; // Guardar el color para esta celda
-          } else {
-            // Si la celda ya está ocupada, mostrar un mensaje de error
+          if (horarios[fila][dia]) {
+            hasConflict = true;
             errorMessage = `Conflicto de horario: ya existe un curso asignado el ${item.Dia} a las ${item.Hora}.`;
           }
         }
       });
+
+      // Solo mapear los horarios si no hay conflictos
+      if (!hasConflict) {
+        const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
+          Math.random() * 256
+        )}, ${Math.floor(Math.random() * 256)}, 0.5)`;
+
+        grpFilteredData.forEach((item) => {
+          const horaInicio = parseInt(item.Hora.split("-")[0]);
+          const dia = item.Dia.toLowerCase();
+          const fila = horaInicio - 6;
+
+          if (fila >= 0 && fila < horarios.length && horarios[fila][dia] !== undefined) {
+            horarios[fila][dia] = item.Espacio_Academico;
+            cellColors[`${fila}-${dia}`] = randomColor;
+          }
+        });
+      }
     } else {
       console.log("Por favor, seleccione un Grp.");
     }
