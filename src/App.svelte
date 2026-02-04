@@ -1,10 +1,10 @@
 <script>
-  import { db } from "./firebase.js";
   import { transformData } from "./utils/transformData.js";
   import Header from "./components/Header.svelte";
   import Footer from "./components/Footer.svelte";
   import { Datatable, ColumnFilterInputs, rows } from "svelte-simple-datatables";
   import { onMount } from 'svelte';
+  import horariosData from "../data/horarios_2026-1_actualizado.json";
 
   const settings = {
     columnFilter: true,
@@ -41,11 +41,11 @@
     sabado: "",
     domingo: "",
   }));
-  // Escuchar cambios en la base de datos y transformar los datos
-  db.on("value", (snapshot) => {
-    const data2 = snapshot.val();
+
+  // Cargar datos desde el archivo JSON local
+  onMount(() => {
     try {
-      data = transformData(snapshot.val());
+      data = transformData(horariosData);
       uniqueEspacios = [...new Set(data.map((item) => item.Espacio_Academico))]; // Extraer valores únicos
       loading = false;
     } catch (err) {
@@ -65,7 +65,7 @@
       // Generar valores únicos de Grp a partir de los datos filtrados
       uniqueGrps = [...new Set(filteredData.map((item) => item.Grp))];
     } else {
-      console.log("Por favor, seleccione un Espacio Académico.");
+       alert("Por favor, seleccione un Espacio Académico.");
     }
   }
 
@@ -108,7 +108,7 @@ function handleGrpSubmit(event) {
         });
       }
     } else {
-      console.log("Por favor, seleccione un Grp.");
+      alert("Por favor, seleccione un Grp.");
     }
   }
 

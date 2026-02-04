@@ -7,7 +7,7 @@
         </div>
         <div>
             <h2 class="texto">
-                Horarios 2025-3 Version Beta            
+                Horarios 2026-1 Version Beta            
             </h2>
         </div>
     </div>
