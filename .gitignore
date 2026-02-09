@@ -4,3 +4,13 @@
 /.firebase/
 
 .DS_Store
+
+# Environment variables - NUNCA commitear estas!
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+firebase-debug.log

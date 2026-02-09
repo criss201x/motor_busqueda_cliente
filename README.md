@@ -1,4 +1,43 @@
-# Motor de busqueda basado en tecnicas de web scraping
+# Motor de Búsqueda de Horarios Académicos
+
+Sistema de búsqueda y visualización de horarios académicos construido con Svelte.
+
+## 🚀 Características
+
+- ✅ Búsqueda de espacios académicos
+- ✅ Filtrado por grupos
+- ✅ Visualización de horarios en tabla interactiva
+- ✅ Detección de conflictos de horarios
+- ✅ Datos cargados desde archivo JSON local (sin dependencia de Firebase Database)
+
+## 📦 Instalación
+
+```bash
+# Instalar dependencias
+npm install
+
+# Desarrollo
+npm run dev
+
+# Compilar para producción
+npm run build
+```
+
+## 🔐 Seguridad
+
+Para información sobre el manejo seguro de credenciales y secretos, consulta [SECURITY.md](SECURITY.md).
+
+**Importante:** Este proyecto ya NO utiliza Firebase Database. Los datos se cargan desde `data/horarios_2026-1_actualizado.json`.
+
+## 📁 Estructura de Datos
+
+Los datos se almacenan en formato JSON en la carpeta `data/`. Ver `modelo_de_datos.json` para la estructura completa.
+
+## 🚀 CI/CD
+
+El proyecto usa GitHub Actions para deploy automático a Firebase Hosting:
+- **Push a main**: Deploy a producción
+- **Pull requests**: Deploy preview
 
 
 ## Licencia
